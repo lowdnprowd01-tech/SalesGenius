@@ -2,6 +2,7 @@ from fastapi import APIRouter, HTTPException, Query
 
 router = APIRouter(prefix="/auth")
 
+
 @router.get("/connect/{provider}")
 async def connect_provider(provider: str):
     if provider not in ["meta", "shopify", "etsy", "tiktok", "youtube"]:
@@ -11,6 +12,7 @@ async def connect_provider(provider: str):
         "auth_url": f"http://localhost:8000/auth/callback/{provider}",
         "message": "Use the provider OAuth flow and store the resulting token securely.",
     }
+
 
 @router.get("/callback/{provider}")
 async def oauth_callback(provider: str, code: str = Query(...)):

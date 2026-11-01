@@ -3,6 +3,7 @@ from app.services.storyboard_generator import StoryboardGenerator
 from app.services.prompt_builder import PromptBuilder
 from app.services.quality_gate import QualityGate
 
+
 class CreativeAgent:
     def __init__(self):
         self.script_generator = ScriptGenerator()
@@ -18,14 +19,14 @@ class CreativeAgent:
         quality = self.quality_gate.evaluate(script, storyboard)
 
         return {
-            "product_name": request.product_name,
-            "platform": request.platform,
-            "duration_seconds": request.duration_seconds,
-            "script": script.model_dump(),
-            "storyboard": [shot.model_dump() for shot in storyboard],
-            "video_prompt": video_prompt,
-            "graphics_prompt": graphics_prompt,
-            "editing_notes": quality["notes"],
-            "quality_pass": quality["pass"],
-            "quality_checks": quality["checks"],
+            \"product_name\": request.product_name,
+            \"platform\": request.platform,
+            \"duration_seconds\": request.duration_seconds,
+            \"script\": script.model_dump(),
+            \"storyboard\": [shot.model_dump() for shot in storyboard],
+            \"video_prompt\": video_prompt,
+            \"graphics_prompt\": graphics_prompt,
+            \"editing_notes\": quality[\"notes\"],
+            \"quality_pass\": quality[\"pass\"],
+            \"quality_checks\": quality[\"checks\"],
         }
